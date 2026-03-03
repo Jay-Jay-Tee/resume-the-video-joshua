@@ -1,35 +1,841 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Joshua Jacob Thomas | Resume</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Joshua Jacob Thomas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
+    :root {
+      --cream: #f2ede6;
+      --ink: #0e0d0b;
+      --rust: #c94f2b;
+      --muted: #8a8070;
+      --line: #d0c8bc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      background: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    .container {
-      text-align: center;
-      font-family: Arial, sans-serif;
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
     }
-    a {
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      padding: 7px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-inner {
       display: inline-block;
-      padding: 12px 24px;
-      background: black;
-      color: white;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-inner span { margin: 0 2.5rem; }
+    .marquee-inner .dot { color: var(--rust); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 3rem;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: rgba(242, 237, 230, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: var(--ink);
       text-decoration: none;
-      border-radius: 6px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      align-items: center;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── RESUME BUTTON ── */
+    .resume-btn {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 0.55rem 1.3rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .resume-btn:hover {
+      background: var(--rust);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--line);
+    }
+    .hero-left {
+      padding: 5rem 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--line);
+    }
+    .hero-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--rust);
+    }
+    .hero-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 7.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--rust);
+      font-family: 'Instrument Serif', serif;
+      font-size: 0.88em;
+    }
+    .hero-desc {
+      font-size: 0.78rem;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+    .cta-primary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--rust);
+      color: var(--cream);
+      border: none;
+      padding: 0.8rem 1.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .cta-primary:hover { background: var(--ink); }
+    .cta-secondary {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+    }
+    .cta-secondary:hover { color: var(--ink); }
+    .cta-secondary::after { content: '↗'; font-size: 0.9em; }
+
+    .hero-right {
+      padding: 5rem 3rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 2rem;
+    }
+    .hero-index {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--line);
+      text-transform: uppercase;
+      align-self: flex-end;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem;
+    }
+    .skill-item {
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      padding: 0.7rem 0;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .skill-item .skill-year {
+      color: var(--muted);
+      font-size: 0.6rem;
+    }
+    .hero-location {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 1.2rem;
+    }
+    .hero-location strong { color: var(--ink); }
+
+    /* ── SECTION ── */
+    section {
+      padding: 5rem 3rem;
+      border-bottom: 1px solid var(--line);
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    section.hidden {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+    .section-num {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      color: var(--rust);
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.05em;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .project-card {
+      padding: 2rem;
+      border: 1px solid var(--line);
+      margin: -1px 0 0 -1px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--rust);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover::before { transform: scaleY(1); }
+    .project-card:hover { background: rgba(201, 79, 43, 0.04); }
+    .project-num {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .project-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+    .project-desc {
+      font-size: 0.68rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 0.8rem;
+      line-height: 2;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .fact-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .fact-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .fact-value {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-align: right;
+    }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .contact-item {
+      flex: 1;
+      min-width: 140px;
+      padding: 2rem;
+      border: 1px solid var(--line);
+      margin: -1px 0 0 -1px;
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .contact-item:hover { background: var(--ink); color: var(--cream); }
+    .contact-item:hover .contact-label { color: rgba(242,237,230,0.5); }
+    .contact-item:hover .contact-arrow { color: var(--rust); }
+    .contact-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .contact-value { font-size: 0.72rem; letter-spacing: 0.03em; word-break: break-all; }
+    .contact-arrow { font-size: 1.2rem; align-self: flex-end; margin-top: auto; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(14,13,11,0.7);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal {
+      background: var(--cream);
+      width: min(560px, 92vw);
+      padding: 3rem;
+      position: relative;
+      transform: translateY(20px) scale(0.97);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close:hover { color: var(--rust); }
+    .modal-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1rem;
+    }
+    .modal-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .modal-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2rem;
+    }
+    .modal-actions {
+      display: flex;
+      gap: 0.8rem;
+    }
+    .modal-dl {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      padding: 0.75rem 1.6rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s;
+    }
+    .modal-dl:hover { background: var(--rust); }
+    .modal-cancel {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: none;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 0.75rem 1.2rem;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .modal-cancel:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-line {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      background: var(--rust);
+      z-index: 9000;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { border-right: none; border-bottom: 1px solid var(--line); }
+      .projects-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      nav { padding: 1rem 1.5rem; }
+      section { padding: 3.5rem 1.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Joshua Jacob Thomas</h1>
-    <p>AI/ML-focused CSE Undergraduate at NIT Calicut</p>
-    <a href="resume.pdf" target="_blank">View Resume</a>
+
+<div class="scroll-line" id="scrollLine"></div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>AI / ML Engineer</span><span class="dot">◆</span>
+    <span>NIT Calicut — CGPA 9.82</span><span class="dot">◆</span>
+    <span>AI Robustness</span><span class="dot">◆</span>
+    <span>Full-Stack</span><span class="dot">◆</span>
+    <span>Competitive Programming</span><span class="dot">◆</span>
+    <span>JEE Advanced AIR 2475</span><span class="dot">◆</span>
+    <span>AISSCE AIR 1</span><span class="dot">◆</span>
+    <span>KEAM Rank 1</span><span class="dot">◆</span>
+    <span>Open to Opportunities</span><span class="dot">◆</span>
+    <span>AI / ML Engineer</span><span class="dot">◆</span>
+    <span>NIT Calicut — CGPA 9.82</span><span class="dot">◆</span>
+    <span>AI Robustness</span><span class="dot">◆</span>
+    <span>Full-Stack</span><span class="dot">◆</span>
+    <span>Competitive Programming</span><span class="dot">◆</span>
+    <span>JEE Advanced AIR 2475</span><span class="dot">◆</span>
+    <span>AISSCE AIR 1</span><span class="dot">◆</span>
+    <span>KEAM Rank 1</span><span class="dot">◆</span>
+    <span>Open to Opportunities</span><span class="dot">◆</span>
   </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">jayjaytee</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><button class="resume-btn" onclick="openModal()">Resume ↗</button></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="hero-tag">Available for internships & research</div>
+      <h1 class="hero-name">
+        JOSHUA<br>
+        JACOB<br>
+        <em>Thomas</em>
+      </h1>
+      <p class="hero-desc">
+        AI/ML-focused CSE freshman at NIT Calicut (CGPA 9.82) with strong foundations in competitive programming, full-stack systems, and algorithmic problem solving. Research interests in AI robustness, model vulnerabilities, and secure intelligent systems.
+      </p>
+      <div class="hero-cta-row">
+        <button class="cta-primary" onclick="openModal()">View Resume</button>
+        <a class="cta-secondary" href="#projects">See Projects</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-index">0.1 — Portfolio 2025</div>
+    <div class="skills-grid">
+      <div class="skill-item">Python / C / C++ <span class="skill-year">●</span></div>
+      <div class="skill-item">JS / TS / Node.js <span class="skill-year">●</span></div>
+      <div class="skill-item">PyTorch / Scikit-learn <span class="skill-year">●</span></div>
+      <div class="skill-item">React / Next.js / Tailwind <span class="skill-year">●</span></div>
+      <div class="skill-item">Git / GitHub / Docker <span class="skill-year">●</span></div>
+      <div class="skill-item">MySQL / SQL <span class="skill-year">●</span></div>
+      <div class="skill-item">DSA / Algorithms <span class="skill-year">●</span></div>
+      <div class="skill-item">REST APIs / OOP / CI-CD <span class="skill-year">●</span></div>
+    </div>
+    <div class="hero-location">
+      Based in <strong>Kozhikode, Kerala</strong> — studying at <strong>NIT Calicut</strong>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-num">001 — 2026</div>
+      <div class="project-name">InboxZero AI</div>
+      <p class="project-desc">Gmail extension with deterministic 3-bullet summarization, strict label categorization via DOM parsing, and a hybrid spam engine combining Gemini inference with weighted heuristics (0–100 score).</p>
+      <div class="project-tags">
+        <span class="tag">Manifest V3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Gemini 2.5 Flash</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">002 — 2026</div>
+      <div class="project-name">MediTrack</div>
+      <p class="project-desc">Secure medical timeline platform with voice-to-note capture, Qdrant semantic retrieval (384-dim embeddings), Groq Llama 3.3 70B analysis, and PDF export for doctor-ready reports.</p>
+      <div class="project-tags">
+        <span class="tag">Flask</span>
+        <span class="tag">Qdrant</span>
+        <span class="tag">Groq Llama 3.3</span>
+        <span class="tag">ReportLab</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">003 — 2026</div>
+      <div class="project-name">Genetic Counselling AI</div>
+      <p class="project-desc">Web-based genetic risk assessment predicting 10 inherited diseases via weighted clinical scoring. Transparent model combining Family (40%), Lifestyle (35%), and Lab Values (25%) with Class I–IV stratification.</p>
+      <div class="project-tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">React</span>
+        <span class="tag">Rule-Based Expert System</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">004 — 2026</div>
+      <div class="project-name">Grid-X</div>
+      <p class="project-desc">Distributed compute mesh with coordinator–worker architecture for isolated Python job execution across LAN nodes. TypeScript SDK for job submission, worker registration, and credit-based execution.</p>
+      <div class="project-tags">
+        <span class="tag">FastAPI</span>
+        <span class="tag">WebSockets</span>
+        <span class="tag">Docker</span>
+        <span class="tag">TypeScript SDK</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">005 — 2026</div>
+      <div class="project-name">LLM Activation Steering</div>
+      <p class="project-desc">Contrastive activation steering without weight updates to control LLM uncertainty behavior at inference time. Computed normalized steering direction v = µ(h<sub>hedged</sub>) − µ(h<sub>direct</sub>) with layer-wise hidden-state injection.</p>
+      <div class="project-tags">
+        <span class="tag">PyTorch</span>
+        <span class="tag">Transformers</span>
+        <span class="tag">AI Interpretability</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">006 — 2025</div>
+      <div class="project-name">HOLOrIG</div>
+      <p class="project-desc">Real-time gesture-controlled holographic interaction system using webcam hand landmark detection. 3D gyroscopic rings, orbit-core demos, and a 2-link robotic arm with inverse kinematics.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">OpenCV</span>
+        <span class="tag">MediaPipe</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">007 — 2025</div>
+      <div class="project-name">Zombie Orb Arena</div>
+      <p class="project-desc">Wave-based browser survival shooter with mini-boss and boss progression logic, advanced boss mechanics (laser sweeps, teleport slams), delta-time game loop, particle engine, and adaptive WebAudio — zero external assets.</p>
+      <div class="project-tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">HTML5 Canvas</span>
+        <span class="tag">WebAudio</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-num">008 — 2025</div>
+      <div class="project-name">Wi-Fi Latency Monitor</div>
+      <p class="project-desc">Microcontroller-based real-time Wi-Fi latency measurement using packet timing diagnostics. Memory-efficient buffering, serial reporting, and lightweight embedded firmware for continuous network performance monitoring.</p>
+      <div class="project-tags">
+        <span class="tag">ESP8266</span>
+        <span class="tag">Embedded C</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">About</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm <strong>Joshua Jacob Thomas</strong> — a first-year CSE student at NIT Calicut (CGPA 9.82) with a deep interest in building AI systems that are genuinely robust and secure, not just accurate.
+      </p>
+      <p>
+        My work spans <strong>ML-driven prototypes, distributed systems, and full-stack applications</strong>. I care about the full stack — from inference-time model steering to production deployment. Currently exploring AI robustness, model vulnerabilities, and secure intelligent systems.
+      </p>
+      <p>
+        Outside of building, I'm active in the <strong>CP Hub, Cyber Security Club (AI Exploitation), FOSSCell, GDSC, and DebSoc</strong> at NITC. Also serving as Placement Representative at the Centre for Career Development.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact-row">
+        <span class="fact-label">Degree</span>
+        <span class="fact-value">B.Tech CSE, 2025–2029</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Institution</span>
+        <span class="fact-value">NIT Calicut</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">CGPA</span>
+        <span class="fact-value">9.82 / 10</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">JEE Advanced</span>
+        <span class="fact-value">AIR 2475</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">AISSCE</span>
+        <span class="fact-value">AIR 1 — 499/500</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">Status</span>
+        <span class="fact-value" style="color: var(--rust);">Open to roles →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-row">
+    <a class="contact-item" href="/cdn-cgi/l/email-protection#076d68746f72666d66646865736f686a66743647606a666e6b2964686a">
+      <span class="contact-label">Email</span>
+      <span class="contact-value">joshuajacobthomas1<br>@gmail.com</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-item" href="https://linkedin.com/in/jayjaytee" target="_blank">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">/in/jayjaytee</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-item" href="https://github.com/Jay-Jay-Tee" target="_blank">
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">@Jay-Jay-Tee</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <div class="contact-item" style="cursor:default;" onclick="openModal()">
+      <span class="contact-label">Resume</span>
+      <span class="contact-value">View & Download<br>Full Resume</span>
+      <span class="contact-arrow">↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Joshua Jacob Thomas</span>
+  <span>NIT Calicut — Kerala, IN</span>
+</footer>
+
+<!-- RESUME MODAL -->
+<div class="modal-overlay" id="modal" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-tag">Document — CV / Resume</div>
+    <div class="modal-title">Joshua Jacob Thomas</div>
+    <p class="modal-sub">
+      AI/ML-focused CSE undergraduate at NIT Calicut. The resume covers academic background, projects, technical skills, and research interests.<br><br>
+      <em style="color: var(--muted); font-size:0.68rem;">Last updated: 2025 · PDF format</em>
+    </p>
+    <div class="modal-actions">
+      <a class="modal-dl" href="Joshua_Jacob_Thomas_RESUME.pdf" target="_blank">Open Resume ↗</a>
+      <a class="modal-dl" href="Joshua_Jacob_Thomas_RESUME.pdf" download style="background: transparent; color: var(--ink); border: 1px solid var(--line);">Download ↓</a>
+      <button class="modal-cancel" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Modal
+  function openModal() {
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Scroll progress line
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const maxScroll = document.body.scrollHeight - window.innerHeight;
+    const pct = (scrolled / maxScroll) * 100;
+    document.getElementById('scrollLine').style.width = pct + '%';
+  });
+
+  // Scroll-reveal sections
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.remove('hidden');
+      }
+    });
+  }, { threshold: 0.05 });
+  sections.forEach(s => {
+    s.classList.add('hidden');
+    observer.observe(s);
+  });
+</script>
 </body>
 </html>
