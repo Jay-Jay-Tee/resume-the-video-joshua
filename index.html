@@ -179,7 +179,7 @@
       color: transparent;
       -webkit-text-stroke: 1px var(--green);
       display: block;
-      text-shadow: 0 0 6px var(--green), 0 0 16px var(--green), 0 0 32px rgba(0,200,90,0.2);
+      text-shadow: 0 0 4px var(--green), 0 0 10px rgba(0,200,90,0.4);
       transition: none;
     }
     .hero-name .n2.neon-off {
@@ -753,10 +753,11 @@
       [180, () => { jacob.classList.add('neon-off'); }],
       [230, () => { jacob.classList.add('neon-dim'); jacob.classList.remove('neon-off'); }],
       [310, () => { jacob.classList.add('neon-off'); jacob.classList.remove('neon-dim'); }],
-      [380, () => { jacob.classList.remove('neon-off', 'neon-dim'); }],
+      [390, () => { jacob.classList.remove('neon-off', 'neon-dim'); }],
     ];
     steps.forEach(([d, fn]) => setTimeout(fn, d));
-    setTimeout(neonGlitch, 1500 + Math.random() * 2500);
+    // schedule next glitch only after this one fully finishes
+    setTimeout(neonGlitch, 390 + 1500 + Math.random() * 2500);
   }
   setTimeout(neonGlitch, 800);
 
