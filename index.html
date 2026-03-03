@@ -35,8 +35,10 @@
         0deg, transparent, transparent 3px,
         rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px
       );
-      pointer-events: none;
-      z-index: 9997;
+      pointer-events: none !important;
+      touch-action: none;
+      z-index: 0;
+      user-select: none;
     }
 
     ::-webkit-scrollbar { width: 3px; }
@@ -464,6 +466,8 @@
       .exp-item { grid-template-columns: 1fr; gap: 0.8rem; }
       nav { padding: 0 1.2rem; }
       section { padding: 3rem 1.5rem; }
+      .nav-links li:not(:last-child) { display: none; }
+      .resume-btn { font-size: 0.72rem; padding: 0.5rem 1.1rem; }
     }
   </style>
 </head>
@@ -673,9 +677,9 @@
     <div class="sec-line"></div>
   </div>
   <div class="contact-grid">
-    <a class="contact-card" href="mailto:joshuajacobthomas1@gmail.com">
+    <a class="contact-card" id="emailCard">
       <span class="c-label">Email</span>
-      <span class="c-value"><span class="__cf_email__" data-cfemail="5933362a312c3833383a363b2d313634382a68193e34383035773a3634">[email&#160;protected]</span></span>
+      <span class="c-value" id="emailDisplay"></span>
       <span class="c-arrow">↗</span>
     </a>
     <a class="contact-card" href="https://linkedin.com/in/jayjaytee" target="_blank">
@@ -721,6 +725,13 @@
 </div>
 
 <script>
+  // Build email via JS to bypass Cloudflare obfuscation
+  const u = 'joshuajacobthomas1';
+  const d = 'gmail.com';
+  const email = u + '@' + d;
+  const card = document.getElementById('emailCard');
+  card.href = 'mailto:' + email;
+  document.getElementById('emailDisplay').textContent = email;
   const yr = new Date().getFullYear();
   document.getElementById('resumeYear').textContent = yr;
   document.getElementById('footerYear').textContent = yr;
@@ -757,9 +768,4 @@
     ];
     steps.forEach(([d, fn]) => setTimeout(fn, d));
     // schedule next glitch only after this one fully finishes
-    setTimeout(neonGlitch, 390 + 1500 + Math.random() * 2500);
-  }
-  setTimeout(neonGlitch, 800);
-
-  // Scroll reveal
-  const revealObserver = new IntersectionObserver((entries) => {
+    setTimeout(neonGlitch, 3
