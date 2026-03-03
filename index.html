@@ -717,8 +717,8 @@
       <span style="color:var(--dim);font-size: 0.68rem;">Last updated: <span id="resumeYear"></span> · PDF format</span>
     </p>
     <div class="modal-actions">
-      <a class="modal-btn mbp" href="Joshua_Jacob_Thomas_RESUME.pdf" target="_blank">Open ↗</a>
-      <a class="modal-btn mbg" href="Joshua_Jacob_Thomas_RESUME.pdf" download>Download ↓</a>
+      <a class="modal-btn mbp" href="https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" target="_blank">Open ↗</a>
+      <a class="modal-btn mbg" href="https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" download>Download ↓</a>
       <button class="modal-btn mbg" onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -726,12 +726,14 @@
 
 <script>
   // Build email via JS to bypass Cloudflare obfuscation
-  const u = 'joshuajacobthomas1';
-  const d = 'gmail.com';
-  const email = u + '@' + d;
-  const card = document.getElementById('emailCard');
-  card.href = 'mailto:' + email;
-  document.getElementById('emailDisplay').textContent = email;
+  window.addEventListener('DOMContentLoaded', () => {
+    const u = 'joshuajacobthomas1';
+    const d = 'gmail.com';
+    const email = u + '@' + d;
+    const card = document.getElementById('emailCard');
+    card.href = 'mailto:' + email;
+    document.getElementById('emailDisplay').textContent = email;
+  });
   const yr = new Date().getFullYear();
   document.getElementById('resumeYear').textContent = yr;
   document.getElementById('footerYear').textContent = yr;
