@@ -13,8 +13,8 @@
       --text:      #a8b8cc;
       --bright:    #e8f0f8;
       --dim:       #6a7d94;
-      --green:     #00e676;
-      --green-glow: rgba(0,230,118,0.08);
+      --green:     #00c85a;
+      --green-glow: rgba(0,200,90,0.06);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,7 +48,7 @@
       position: fixed; top: 0; left: 0;
       height: 2px;
       background: var(--green);
-      box-shadow: 0 0 10px var(--green);
+      box-shadow: 0 0 6px var(--green);
       z-index: 9999;
       width: 0%;
       transition: width 0.1s linear;
@@ -158,13 +158,13 @@
     }
     .hero-status::before {
       content: '';
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--green);
-      box-shadow: 0 0 8px var(--green);
-      animation: blink 2s ease-in-out infinite;
+      box-shadow: 0 0 5px var(--green);
+      animation: blink 1.6s ease-in-out infinite;
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    @keyframes blink { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.15; transform:scale(0.7);} }
 
     .hero-name {
       font-family: 'Syne', sans-serif;
@@ -179,16 +179,16 @@
       color: transparent;
       -webkit-text-stroke: 1px var(--green);
       display: block;
-      text-shadow: 0 0 8px var(--green), 0 0 24px var(--green), 0 0 48px rgba(0,230,118,0.35);
-      transition: -webkit-text-stroke-color 0.04s, text-shadow 0.04s;
+      text-shadow: 0 0 6px var(--green), 0 0 16px var(--green), 0 0 32px rgba(0,200,90,0.2);
+      transition: none;
     }
     .hero-name .n2.neon-off {
-      -webkit-text-stroke-color: var(--border);
+      -webkit-text-stroke-color: #111820;
       text-shadow: none;
     }
     .hero-name .n2.neon-dim {
-      -webkit-text-stroke-color: rgba(0,230,118,0.25);
-      text-shadow: 0 0 3px rgba(0,230,118,0.1);
+      -webkit-text-stroke-color: rgba(0,200,90,0.3);
+      text-shadow: 0 0 3px rgba(0,200,90,0.1);
     }
     .hero-name .n3 { color: var(--green); font-style: italic; display: block; }
 
@@ -673,9 +673,9 @@
     <div class="sec-line"></div>
   </div>
   <div class="contact-grid">
-    <a class="contact-card" href="mailto:joshuajacobthomas1@gmail.com">
+    <a class="contact-card" href="/cdn-cgi/l/email-protection#573d38243f22363d36343835233f383a36246617303a363e3b7934383a">
       <span class="c-label">Email</span>
-      <span class="c-value">joshuajacobthomas1@gmail.com</span>
+      <span class="c-value"><span class="__cf_email__" data-cfemail="5933362a312c3833383a363b2d313634382a68193e34383035773a3634">[email&#160;protected]</span></span>
       <span class="c-arrow">↗</span>
     </a>
     <a class="contact-card" href="https://linkedin.com/in/jayjaytee" target="_blank">
@@ -720,7 +720,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const yr = new Date().getFullYear();
   document.getElementById('resumeYear').textContent = yr;
   document.getElementById('footerYear').textContent = yr;
@@ -746,29 +746,19 @@
   // JACOB neon — stays lit, briefly glitches off
   const jacob = document.querySelector('.hero-name .n2');
   function neonGlitch() {
-    // sequence: dim → off → dim → back on, very quick
     const steps = [
-      [0,   () => jacob.classList.add('neon-dim')],
-      [60,  () => { jacob.classList.add('neon-off'); jacob.classList.remove('neon-dim'); }],
-      [120, () => { jacob.classList.add('neon-dim'); jacob.classList.remove('neon-off'); }],
-      [160, () => { jacob.classList.remove('neon-dim','neon-off'); }],
-      [220, () => jacob.classList.add('neon-off')],
-      [270, () => { jacob.classList.remove('neon-off'); }],
+      [0,   () => { jacob.classList.add('neon-dim'); jacob.classList.remove('neon-off'); }],
+      [80,  () => { jacob.classList.add('neon-off'); jacob.classList.remove('neon-dim'); }],
+      [140, () => { jacob.classList.remove('neon-off'); }],
+      [180, () => { jacob.classList.add('neon-off'); }],
+      [230, () => { jacob.classList.add('neon-dim'); jacob.classList.remove('neon-off'); }],
+      [310, () => { jacob.classList.add('neon-off'); jacob.classList.remove('neon-dim'); }],
+      [380, () => { jacob.classList.remove('neon-off', 'neon-dim'); }],
     ];
     steps.forEach(([d, fn]) => setTimeout(fn, d));
-    // next glitch in 2–6 seconds
-    setTimeout(neonGlitch, 2000 + Math.random() * 4000);
+    setTimeout(neonGlitch, 1500 + Math.random() * 2500);
   }
-  setTimeout(neonGlitch, 1000 + Math.random() * 1500);
+  setTimeout(neonGlitch, 800);
 
   // Scroll reveal
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.remove('hidden'); });
-  }, { threshold: 0.05 });
-  document.querySelectorAll('section').forEach(s => {
-    s.classList.add('hidden');
-    revealObserver.observe(s);
-  });
-</script>
-</body>
-</html>
