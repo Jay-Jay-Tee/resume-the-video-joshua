@@ -27,7 +27,6 @@
       overflow-x: hidden;
     }
 
-    /* scanlines */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -45,7 +44,6 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--green); }
 
-    /* ── SCROLL PROGRESS ── */
     .scroll-line {
       position: fixed; top: 0; left: 0;
       height: 2px;
@@ -69,7 +67,7 @@
     }
     .ticker-inner {
       display: inline-block;
-      animation: ticker 32s linear infinite;
+      animation: ticker 38s linear infinite;
     }
     .ticker-inner span { margin: 0 2rem; }
     .ticker-inner .hi { color: var(--green); }
@@ -250,7 +248,6 @@
     }
     .meta-value { font-size: 0.78rem; color: var(--bright); }
 
-    /* hero right */
     .hero-right {
       padding: 4rem 3rem;
       display: flex;
@@ -484,6 +481,7 @@
     <span>AISSCE AIR 1 — 499/500</span><span class="hi"> ◆ </span>
     <span>JEE Advanced AIR 2475</span><span class="hi"> ◆ </span>
     <span>KEAM Rank 1</span><span class="hi"> ◆ </span>
+    <span>Open Source Enthusiast</span><span class="hi"> ◆ </span>
     <span>AI Robustness & Security</span><span class="hi"> ◆ </span>
     <span>Full-Stack Systems</span><span class="hi"> ◆ </span>
     <span>Open to Opportunities</span><span class="hi"> ◆ </span>
@@ -493,6 +491,7 @@
     <span>AISSCE AIR 1 — 499/500</span><span class="hi"> ◆ </span>
     <span>JEE Advanced AIR 2475</span><span class="hi"> ◆ </span>
     <span>KEAM Rank 1</span><span class="hi"> ◆ </span>
+    <span>Open Source Enthusiast</span><span class="hi"> ◆ </span>
     <span>AI Robustness & Security</span><span class="hi"> ◆ </span>
     <span>Full-Stack Systems</span><span class="hi"> ◆ </span>
     <span>Open to Opportunities</span><span class="hi"> ◆ </span>
@@ -522,7 +521,7 @@
         <span class="n3">Thomas</span>
       </h1>
       <p class="hero-desc">
-        <strong>CSE freshman at NIT Calicut</strong> with a focus on AI/ML systems, competitive programming, and full-stack development. Building things that are robust — not just accurate. Research interests in <strong>model vulnerabilities, mechanistic interpretability, and AI security</strong>.
+        <strong>CSE freshman at NIT Calicut</strong> with strong foundations in AI/ML, competitive programming, and scalable system design. Building intelligent systems that are <strong>reliable, not just accurate</strong>. Open-source enthusiast with research interests in <strong>model interpretability, AI security, and modern ML paradigms</strong>.
       </p>
       <div class="hero-btns">
         <button class="btn-primary" onclick="openModal()">View Resume</button>
@@ -540,10 +539,10 @@
     <div class="skill-row"><span>JS / TS / Node.js</span><span class="sdot">●</span></div>
     <div class="skill-row"><span>PyTorch / Scikit-learn</span><span class="sdot">●</span></div>
     <div class="skill-row"><span>React / Next.js / Tailwind</span><span class="sdot">●</span></div>
+    <div class="skill-row"><span>Flask / FastAPI / Express</span><span class="sdot">●</span></div>
     <div class="skill-row"><span>Git / GitHub / Docker</span><span class="sdot">●</span></div>
-    <div class="skill-row"><span>MySQL / SQL</span><span class="sdot">●</span></div>
+    <div class="skill-row"><span>MySQL / Qdrant</span><span class="sdot">●</span></div>
     <div class="skill-row"><span>DSA / Algorithms</span><span class="sdot">●</span></div>
-    <div class="skill-row"><span>REST APIs / OOP / CI-CD</span><span class="sdot">●</span></div>
     <div class="hero-coords"><strong>Kozhikode, Kerala</strong> — NIT Calicut</div>
   </div>
 </div>
@@ -653,9 +652,9 @@
   </div>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm <strong>Joshua Jacob Thomas</strong> — first-year CSE at NIT Calicut, building at the intersection of AI research and systems engineering. I care about making models that are genuinely robust, not just benchmark-optimised.</p>
-      <p>Active in <strong>CP Hub, Cyber Security Club (AI Exploitation), FOSSCell, GDSC, and DebSoc</strong> at NITC. Serving as Placement Representative at the Centre for Career Development.</p>
-      <p>Interests: mechanistic interpretability, AI security, distributed systems, competitive programming, and the occasional browser game built from scratch at 2am.</p>
+      <p>I'm <strong>Joshua Jacob Thomas</strong> — first-year CSE at NIT Calicut, building at the intersection of AI research and systems engineering. Strong foundations in AI/ML paradigms, competitive programming, and scalable system design. I care about making intelligent systems that are <strong>reliable — not just accurate</strong>.</p>
+      <p>Open-source enthusiast and active member of <strong>CP Hub, Cyber Security Club (AI Exploitation), FOSSCell, GDSC, and DebSoc</strong> at NITC. Serving as Placement Representative at the Centre for Career Development.</p>
+      <p>Interests: mechanistic interpretability, AI security, modern ML, distributed systems, algorithms, and the occasional browser game built from scratch at 2am.</p>
     </div>
     <div class="about-facts">
       <div class="fact-row"><span class="fact-label">Degree</span><span class="fact-value">B.Tech CSE, 2025–2029</span></div>
@@ -714,7 +713,7 @@
     <div class="modal-title">Joshua Jacob Thomas</div>
     <p class="modal-sub">
       AI/ML-focused CSE undergraduate at NIT Calicut. Covers academic background, projects, experience, and technical skills.<br><br>
-      <span style="color:var(--dim);font-size: 0.68rem;">Last updated: <span id="resumeYear"></span> · PDF format</span>
+      <span style="color:var(--dim);font-size:0.68rem;">Last updated: <span id="resumeYear"></span> · PDF format</span>
     </p>
     <div class="modal-actions">
       <a class="modal-btn mbp" href="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" target="_blank">Open ↗</a>
@@ -747,7 +746,6 @@
     document.getElementById('scrollLine').style.width = pct + '%';
   });
 
-  // JACOB neon — stays lit, briefly glitches off
   const jacob = document.querySelector('.hero-name .n2');
   function neonGlitch() {
     const steps = [
@@ -760,12 +758,10 @@
       [390, () => { jacob.classList.remove('neon-off', 'neon-dim'); }],
     ];
     steps.forEach(([d, fn]) => setTimeout(fn, d));
-    // schedule next glitch only after this one fully finishes
     setTimeout(neonGlitch, 390 + 1500 + Math.random() * 2500);
   }
   setTimeout(neonGlitch, 800);
 
-  // Scroll reveal
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.remove('hidden'); });
   }, { threshold: 0.05 });
