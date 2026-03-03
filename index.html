@@ -718,7 +718,7 @@
     </p>
     <div class="modal-actions">
       <a class="modal-btn mbp" href="https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" target="_blank">Open ↗</a>
-      <a class="modal-btn mbg" href="https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" download>Download ↓</a>
+      <a class="modal-btn mbg" href="https://raw.githubusercontent.com/Jay-Jay-Tee/resume-the-video-joshua/main/Joshua_Jacob_Thomas_RESUME.pdf" download="Joshua_Jacob_Thomas_RESUME.pdf">Download ↓</a>
       <button class="modal-btn mbg" onclick="closeModal()">Close</button>
     </div>
   </div>
@@ -761,4 +761,18 @@
     ];
     steps.forEach(([d, fn]) => setTimeout(fn, d));
     // schedule next glitch only after this one fully finishes
-    setTimeout(neonGlitch, 3
+    setTimeout(neonGlitch, 390 + 1500 + Math.random() * 2500);
+  }
+  setTimeout(neonGlitch, 800);
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.remove('hidden'); });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('section').forEach(s => {
+    s.classList.add('hidden');
+    revealObserver.observe(s);
+  });
+</script>
+</body>
+</html>
