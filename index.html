@@ -677,9 +677,9 @@
     <div class="sec-line"></div>
   </div>
   <div class="contact-grid">
-    <a class="contact-card" id="emailCard">
+    <a class="contact-card" id="emailCard" href="#" onclick="this.href='mai'+'lto:joshuajacobthomas1'+'@'+'gmail.com'">
       <span class="c-label">Email</span>
-      <span class="c-value" id="emailDisplay"></span>
+      <span class="c-value">joshuajacobthomas1&#8203;&#64;gmail&#46;com</span>
       <span class="c-arrow">↗</span>
     </a>
     <a class="contact-card" href="https://linkedin.com/in/jayjaytee" target="_blank">
@@ -725,15 +725,6 @@
 </div>
 
 <script>
-  // Build email via JS to bypass Cloudflare obfuscation
-  window.addEventListener('DOMContentLoaded', () => {
-    const u = 'joshuajacobthomas1';
-    const d = 'gmail.com';
-    const email = u + '@' + d;
-    const card = document.getElementById('emailCard');
-    card.href = 'mailto:' + email;
-    document.getElementById('emailDisplay').textContent = email;
-  });
   const yr = new Date().getFullYear();
   document.getElementById('resumeYear').textContent = yr;
   document.getElementById('footerYear').textContent = yr;
