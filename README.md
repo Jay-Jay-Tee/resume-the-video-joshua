@@ -1,1 +1,1 @@
-> Welcome to my RESUME.md page! :)
+Welcome to my RESUME.md page! :)
