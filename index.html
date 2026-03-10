@@ -320,6 +320,10 @@
       position: relative;
       overflow: hidden;
       transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
     }
     .project-card:hover {
       border-color: rgba(0,230,118,0.4);
@@ -329,6 +333,18 @@
       content: attr(data-num);
       position: absolute; top: 1.1rem; right: 1.1rem;
       font-size: 0.58rem; letter-spacing: 0.15em; color: var(--dim);
+    }
+    /* GitHub arrow indicator */
+    .project-card .gh-link {
+      position: absolute; bottom: 1.1rem; right: 1.1rem;
+      font-size: 0.6rem; letter-spacing: 0.1em;
+      color: var(--dim);
+      opacity: 0;
+      transition: opacity 0.2s, color 0.2s;
+    }
+    .project-card:hover .gh-link {
+      opacity: 1;
+      color: var(--green);
     }
     .proj-year {
       font-size: 0.62rem; letter-spacing: 0.15em;
@@ -563,54 +579,62 @@
     <div class="sec-line"></div>
   </div>
   <div class="projects-grid">
-    <div class="project-card" data-num="001">
+    <a class="project-card" data-num="001" href="https://github.com/Jay-Jay-Tee/inbox-zero" target="_blank" rel="noopener">
       <div class="proj-year">2026 · Hackathon · Team of 3 </div>
       <div class="proj-name">InboxZero</div>
       <p class="proj-desc">Gmail extension with deterministic 3-bullet summarization, strict label categorization via DOM parsing, and a hybrid spam engine combining Gemini inference with weighted heuristics (0–100 score).</p>
       <div class="proj-tags"><span class="tag">Manifest V3</span><span class="tag">JavaScript</span><span class="tag">Gemini 2.5 Flash</span></div>
-    </div>
-    <div class="project-card" data-num="002">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="002" href="https://github.com/Jay-Jay-Tee/meditrack" target="_blank" rel="noopener">
       <div class="proj-year">2026 · Hackathon · Team of 2</div>
       <div class="proj-name">MediTrack</div>
       <p class="proj-desc">Secure medical timeline platform with voice-to-note capture, Qdrant semantic retrieval (384-dim embeddings), Groq Llama 3.3 70B analysis, and PDF export for doctor-ready reports.</p>
       <div class="proj-tags"><span class="tag">Flask</span><span class="tag">Qdrant</span><span class="tag">Groq Llama 3.3</span><span class="tag">ReportLab</span></div>
-    </div>
-    <div class="project-card" data-num="003">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="003" href="https://github.com/Jay-Jay-Tee/genescope" target="_blank" rel="noopener">
       <div class="proj-year">2026 · Hackathon · Team of 10</div>
       <div class="proj-name">GeneScope</div>
       <p class="proj-desc">Web-based genetic risk assessment predicting 10 inherited diseases via weighted clinical scoring. Combines Family (40%), Lifestyle (35%), and Lab Values (25%) with Class I–IV stratification.</p>
       <div class="proj-tags"><span class="tag">FastAPI</span><span class="tag">React / Vite</span><span class="tag">Ingenious Risk Scoring System</span></div>
-    </div>
-    <div class="project-card" data-num="004">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="004" href="https://github.com/Jay-Jay-Tee/the-grid-x" target="_blank" rel="noopener">
       <div class="proj-year">2026 · Hackathon · Team of 4</div>
       <div class="proj-name">Grid-X</div>
       <p class="proj-desc">Distributed compute mesh with coordinator–worker architecture for isolated Python job execution across LAN nodes. TypeScript SDK for job submission, worker registration, and credit-based execution.</p>
       <div class="proj-tags"><span class="tag">FastAPI</span><span class="tag">WebSockets</span><span class="tag">Docker</span><span class="tag">TypeScript SDK</span></div>
-    </div>
-    <div class="project-card" data-num="005">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="005" href="https://github.com/Jay-Jay-Tee/llm-activation-steering" target="_blank" rel="noopener">
       <div class="proj-year">2026</div>
       <div class="proj-name">LLM Activation Steering</div>
       <p class="proj-desc">Contrastive activation steering without weight updates to control LLM uncertainty at inference time. Layer-wise hidden-state injection with automated evaluation of semantic similarity and uncertainty markers.</p>
       <div class="proj-tags"><span class="tag">PyTorch</span><span class="tag">Transformers</span><span class="tag">Mechanistic Interpretability</span></div>
-    </div>
-    <div class="project-card" data-num="006">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="006" href="https://github.com/Jay-Jay-Tee/gdsc-ml-tasks-portfolio" target="_blank" rel="noopener">
       <div class="proj-year">2026</div>
       <div class="proj-name">Interactive ML Portfolio</div>
       <p class="proj-desc">Six ML models implemented end-to-end with real-time interactive demos. Includes from-scratch autograd engine (MicroGrad), MNIST digit classifier with canvas drawing, GPT-2 Transformer modules, and animated forward-pass visualizations.</p>
       <div class="proj-tags"><span class="tag">PyTorch</span><span class="tag">Scikit-learn</span><span class="tag">HTML5 Canvas</span><span class="tag">JavaScript</span></div>
-    </div>
-    <div class="project-card" data-num="007">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="007" href="https://github.com/Jay-Jay-Tee/HOLOrIG" target="_blank" rel="noopener">
       <div class="proj-year">2025</div>
       <div class="proj-name">HOLOrIG</div>
       <p class="proj-desc">Real-time gesture-controlled holographic interaction system. 3D gyroscopic rings, orbit-core demos, and a 2-link robotic arm with inverse kinematics via MediaPipe hand landmark detection.</p>
       <div class="proj-tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">MediaPipe</span></div>
-    </div>
-    <div class="project-card" data-num="008">
+      <span class="gh-link">GitHub ↗</span>
+    </a>
+    <a class="project-card" data-num="008" href="https://github.com/Jay-Jay-Tee/zombie-orb-arena" target="_blank" rel="noopener">
       <div class="proj-year">2025 · Hackathon</div>
       <div class="proj-name">Zombie Orb Arena</div>
       <p class="proj-desc">Wave-based browser survival shooter with boss progression, laser sweeps, teleport slams, delta-time game loop, real-time particle engine, and adaptive WebAudio — zero external assets.</p>
       <div class="proj-tags"><span class="tag">JavaScript</span><span class="tag">HTML5 Canvas</span><span class="tag">WebAudio API</span></div>
-    </div>
+      <span class="gh-link">GitHub ↗</span>
+    </a>
     <div class="project-card" data-num="009">
       <div class="proj-year">2025</div>
       <div class="proj-name">Wi-Fi Latency Monitor</div>
